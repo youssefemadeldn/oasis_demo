@@ -11,7 +11,7 @@ class AppConstants {
   // Motion — matches the Oasis Design System's standard easing durations.
   static const Duration kAnimationDurationFast = Duration(milliseconds: 120);
   static const Duration kAnimationDuration = Duration(milliseconds: 200);
-  static const Duration kSplashDuration = Duration(seconds: 2);
+  static const Duration kSplashDuration = Duration(seconds: 3);
 
   static const int kDefaultPageSize = 20;
 
