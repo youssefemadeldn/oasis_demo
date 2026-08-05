@@ -22,6 +22,17 @@ class AppColors {
   static const Color surface = Color(0xFFFFFFFF); // --gray-0
   static const Color cardBackground = Color(0xFFFFFFFF); // --gray-0
 
+  // Dark marketing surfaces — splash, onboarding, login header, home header.
+  static const Color surfaceDark = Color(0xFF0A1420); // --navy-900
+  static const Color surfaceDarkElevated = Color(0xFF16293C); // --navy-700
+  static const Color textOnDark = Color(0xFFEEF4FA); // --text-on-dark
+  static const Color textOnDarkMuted = Color(0xFFA9B8C8); // --text-on-dark-muted
+
+  // Brand soft — badge/tag backgrounds needing the true token instead of an
+  // alpha-blended approximation.
+  static const Color brandSoft = Color(0xFFEAF7FD); // --blue-50
+  static const Color brandStrong = Color(0xFF1477A3); // --blue-600
+
   // Text.
   static const Color textPrimary = Color(0xFF141920); // --gray-900
   static const Color textSecondary = Color(0xFF535D68); // --gray-600

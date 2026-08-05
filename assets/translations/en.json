@@ -1,1 +1,150 @@
-{}
+{
+  "common": {
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "continueLabel": "Continue",
+    "call": "Call",
+    "message": "Message",
+    "nav": {
+      "home": "Home",
+      "policies": "Policies",
+      "claims": "Claims",
+      "profile": "Profile"
+    },
+    "status": {
+      "pending": "Pending",
+      "closed": "Closed",
+      "rejected": "Rejected",
+      "processing": "Under Process",
+      "invoiced": "Invoiced",
+      "cancelled": "Cancelled"
+    }
+  },
+  "onboarding": {
+    "title": "Manage your policies and claims, anywhere",
+    "subtitle": "Track coverage, submit claims and follow their status from your phone.",
+    "getStarted": "Get Started"
+  },
+  "auth": {
+    "login": {
+      "tagline": "Policy management and claims, in your pocket",
+      "welcomeBack": "Welcome back",
+      "nationalIdLabel": "Policy / National ID number",
+      "nationalIdHint": "1xxxxxxxxx",
+      "passwordLabel": "Password",
+      "passwordHint": "••••••••",
+      "forgotPassword": "Forgot password?",
+      "forgotPasswordSent": "A password reset link has been sent to your registered email.",
+      "loginButton": "Login"
+    }
+  },
+  "home": {
+    "greeting": "Good afternoon",
+    "activePolicies": "Active Policies",
+    "openClaims": "Open Claims",
+    "submitClaim": "Submit a Claim",
+    "viewPolicies": "View Policies",
+    "recentActivity": "Recent Activity"
+  },
+  "notifications": {
+    "title": "Notifications",
+    "item1": "Your claim CLM-2026-3402 is now under review.",
+    "time1": "2 hours ago",
+    "item2": "Policy SL-RUH-GEN-2026-1090 renews in 11 days.",
+    "time2": "1 day ago",
+    "item3": "Claim CLM-2026-3381 has been invoiced.",
+    "time3": "3 days ago",
+    "item4": "Claim CLM-2026-3299 was rejected — contact your broker for details.",
+    "time4": "5 days ago",
+    "item5": "Welcome to the Oasis policyholder app.",
+    "time5": "2 weeks ago"
+  },
+  "policies": {
+    "title": "My Policies",
+    "expires": "Expires {}",
+    "tag": {
+      "active": "Active",
+      "renewalDue": "Renewal due"
+    }
+  },
+  "policyDetail": {
+    "title": "Policy Details",
+    "branch": "Branch",
+    "effectiveDate": "Effective Date",
+    "expiryDate": "Expiry Date",
+    "premium": "Premium",
+    "documents": "Documents",
+    "submitClaimOnPolicy": "Submit a Claim on this Policy"
+  },
+  "claims": {
+    "title": "Claims",
+    "newClaim": "+ New Claim",
+    "submittedToast": "Claim submitted. We'll notify you once it's reviewed."
+  },
+  "claimDetail": {
+    "title": "Claim Status",
+    "claimAndPolicy": "{} · Policy {}",
+    "progress": "Progress",
+    "documents": "Documents",
+    "rejectedToast": "This claim was rejected. Contact your broker for details.",
+    "invoicedToast": "Claim approved and invoiced.",
+    "timeline": {
+      "submitted": "Submitted",
+      "underReview": "Under Review",
+      "processing": "Processing",
+      "approved": "Approved",
+      "rejected": "Rejected"
+    }
+  },
+  "submitClaim": {
+    "title": "Submit a Claim",
+    "step": {
+      "policy": "Policy",
+      "details": "Details",
+      "documents": "Documents",
+      "review": "Review"
+    },
+    "choosePolicy": "Choose the policy this claim relates to.",
+    "filingFor": "Filing for {} · {}",
+    "claimTypeLabel": "Claim Type",
+    "descriptionLabel": "Description",
+    "descriptionHint": "Briefly describe what happened",
+    "addDocuments": "Add photos or documents that support your claim.",
+    "takePhoto": "Take Photo",
+    "gallery": "Gallery",
+    "reviewIntro": "Review your claim before submitting.",
+    "reviewPolicy": "Policy",
+    "reviewAttachments": "Attachments",
+    "fileCount": "{} file(s)",
+    "confirmTitle": "Submit claim?",
+    "confirmBody": "Your claim will be sent to Oasis IMS for review. You will be notified once it is assessed.",
+    "submitButton": "Submit Claim"
+  },
+  "profile": {
+    "title": "Profile",
+    "nationalId": "National ID {}",
+    "phone": "Phone",
+    "email": "Email",
+    "arabicInterface": "Arabic interface",
+    "pushNotifications": "Push notifications",
+    "contactBroker": "Contact your broker",
+    "signOut": "Sign Out"
+  },
+  "support": {
+    "title": "Support",
+    "brokerRole": "Your Insurance Broker — Oasis IBS",
+    "faqTitle": "Frequently Asked Questions",
+    "faq1": {
+      "q": "How long does a claim take to process?",
+      "a": "Most claims are reviewed within 3–5 business days. Motor and property claims may take longer if a site visit is required."
+    },
+    "faq2": {
+      "q": "What documents do I need to submit a claim?",
+      "a": "A completed claim form, photos of the damage or incident, and any supporting invoices or police reports if applicable."
+    },
+    "faq3": {
+      "q": "How do I renew a policy?",
+      "a": "Renewals are handled by your broker. You will receive a reminder before expiry — contact your broker to confirm renewal terms."
+    }
+  }
+}
