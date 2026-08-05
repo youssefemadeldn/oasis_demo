@@ -1,0 +1,40 @@
+<!-- @dsCard group="Components" viewport="700x520" name="Core: Button, Badge, Card, Tag, Tabs, Dialog, Toast" subtitle="Primary UI primitives" -->
+<link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" crossorigin></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" crossorigin></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" crossorigin></script>
+<script src="../../_ds_bundle.js"></script>
+<div id="root" style="padding:20px;background:var(--surface-page);font-family:var(--font-body)"></div>
+<script type="text/babel">
+const { Button, StatusBadge, Card, Tag, Tabs, Dialog, Toast } = window.OasisDesignSystem_6d12e0;
+function Demo(){
+  const [open, setOpen] = React.useState(false);
+  return (
+    <div style={{display:'flex',flexDirection:'column',gap:16}}>
+      <div style={{display:'flex',gap:10,flexWrap:'wrap'}}>
+        <Button>Primary</Button>
+        <Button variant="secondary">Secondary</Button>
+        <Button variant="ghost">Ghost</Button>
+        <Button variant="danger">Danger</Button>
+        <Button variant="dark">Dark</Button>
+        <Button disabled>Disabled</Button>
+      </div>
+      <div style={{display:'flex',gap:8,flexWrap:'wrap'}}>
+        <StatusBadge status="pending" /><StatusBadge status="closed" /><StatusBadge status="rejected" />
+        <StatusBadge status="processing" /><StatusBadge status="invoiced" /><StatusBadge status="cancelled" />
+      </div>
+      <div style={{display:'flex',gap:8}}><Tag>Riyadh</Tag><Tag tone="brand">Motor</Tag><Tag tone="dark">Fleet</Tag></div>
+      <Card style={{maxWidth:340}}>
+        <Tabs tabs={[{label:'Active',content:<div style={{fontSize:14,color:'var(--text-secondary)'}}>3 active policies</div>},{label:'Expired',content:<div style={{fontSize:14,color:'var(--text-secondary)'}}>1 expired policy</div>}]} />
+      </Card>
+      <Toast tone="success">Claim submitted successfully.</Toast>
+      <Button onClick={()=>setOpen(true)} size="sm">Open Dialog</Button>
+      <Dialog open={open} title="Submit Claim?" onClose={()=>setOpen(false)} actions={<>
+        <Button variant="secondary" full onClick={()=>setOpen(false)}>Cancel</Button>
+        <Button full onClick={()=>setOpen(false)}>Confirm</Button>
+      </>}>Your claim will be sent to Oasis IMS for review.</Dialog>
+    </div>
+  );
+}
+ReactDOM.createRoot(document.getElementById('root')).render(<Demo/>);
+</script>
