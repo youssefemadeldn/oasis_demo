@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../theme/app_colors.dart';
 
 /// Static utility — takes [BuildContext] at the call site, no DI
-/// registration (unlike [DialogHelper]/[SnackBarHelper]).
+/// registration (unlike [DialogHelper]).
 class BottomSheetHelper {
   const BottomSheetHelper._();
 

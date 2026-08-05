@@ -18,7 +18,6 @@ import 'package:go_router/go_router.dart' as _i583;
 import 'package:injectable/injectable.dart' as _i526;
 import 'package:oasis_demo/core/di/register_module.dart' as _i860;
 import 'package:oasis_demo/core/helpers/dialog_helper.dart' as _i150;
-import 'package:oasis_demo/core/helpers/snack_bar_helper.dart' as _i681;
 import 'package:oasis_demo/core/network/api_manager.dart' as _i345;
 import 'package:oasis_demo/core/network/connectivity_helper.dart' as _i104;
 import 'package:oasis_demo/core/network/dio_factory.dart' as _i989;
@@ -61,9 +60,6 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.lazySingleton<_i150.DialogHelper>(
       () => _i150.DialogHelper(gh<_i409.GlobalKey<_i409.NavigatorState>>()),
-    );
-    gh.lazySingleton<_i681.SnackBarHelper>(
-      () => _i681.SnackBarHelper(gh<_i409.GlobalKey<_i409.NavigatorState>>()),
     );
     gh.singleton<_i361.Dio>(() => registerModule.dio(gh<_i989.DioFactory>()));
     gh.lazySingleton<_i345.ApiManager>(() => _i345.ApiManager(gh<_i361.Dio>()));
