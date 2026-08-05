@@ -16,22 +16,28 @@ export function BottomNav({ active = 'home', onChange }) {
   ];
   return (
     <div style={{
-      display: 'flex', justifyContent: 'space-around', alignItems: 'center',
-      background: 'var(--surface-card)', borderTop: '1px solid var(--border-default)',
-      padding: '10px 8px calc(10px + env(safe-area-inset-bottom))', fontFamily: 'var(--font-body)',
+      padding: '8px 16px calc(8px + env(safe-area-inset-bottom))',
+      background: 'var(--surface-page)',
     }}>
-      {items.map((it) => {
-        const a = it.key === active;
-        return (
-          <button key={it.key} onClick={() => onChange && onChange(it.key)} style={{
-            display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 3,
-            background: 'none', border: 'none', cursor: 'pointer', padding: '2px 10px',
-          }}>
-            {icons[it.key](a)}
-            <span style={{ fontSize: 'var(--fs-micro)', fontWeight: a ? 'var(--fw-semibold)' : 'var(--fw-medium)', color: a ? 'var(--color-brand)' : 'var(--text-muted)' }}>{it.label}</span>
-          </button>
-        );
-      })}
+      <div style={{
+        display: 'flex', justifyContent: 'space-around', alignItems: 'center',
+        background: 'var(--surface-card)', borderRadius: 28, boxShadow: 'var(--shadow-md)',
+        padding: 8, fontFamily: 'var(--font-body)',
+      }}>
+        {items.map((it) => {
+          const a = it.key === active;
+          return (
+            <button key={it.key} onClick={() => onChange && onChange(it.key)} style={{
+              display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 3,
+              background: a ? 'var(--color-brand-soft)' : 'none', border: 'none', cursor: 'pointer',
+              padding: '6px 10px', borderRadius: 20,
+            }}>
+              {icons[it.key](a)}
+              <span style={{ fontSize: 'var(--fs-micro)', fontWeight: a ? 'var(--fw-semibold)' : 'var(--fw-medium)', color: a ? 'var(--color-brand)' : 'var(--text-muted)' }}>{it.label}</span>
+            </button>
+          );
+        })}
+      </div>
     </div>
   );
 }

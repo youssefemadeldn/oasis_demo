@@ -700,12 +700,18 @@ function BottomNav({
   }];
   return /*#__PURE__*/React.createElement("div", {
     style: {
+      padding: '8px 16px calc(8px + env(safe-area-inset-bottom))',
+      background: 'var(--surface-page)'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
       display: 'flex',
       justifyContent: 'space-around',
       alignItems: 'center',
       background: 'var(--surface-card)',
-      borderTop: '1px solid var(--border-default)',
-      padding: '10px 8px calc(10px + env(safe-area-inset-bottom))',
+      borderRadius: 28,
+      boxShadow: 'var(--shadow-md)',
+      padding: 8,
       fontFamily: 'var(--font-body)'
     }
   }, items.map(it => {
@@ -718,10 +724,11 @@ function BottomNav({
         flexDirection: 'column',
         alignItems: 'center',
         gap: 3,
-        background: 'none',
+        background: a ? 'var(--color-brand-soft)' : 'none',
         border: 'none',
         cursor: 'pointer',
-        padding: '2px 10px'
+        padding: '6px 10px',
+        borderRadius: 20
       }
     }, icons[it.key](a), /*#__PURE__*/React.createElement("span", {
       style: {
@@ -730,7 +737,7 @@ function BottomNav({
         color: a ? 'var(--color-brand)' : 'var(--text-muted)'
       }
     }, it.label));
-  }));
+  })));
 }
 Object.assign(__ds_scope, { BottomNav });
 })(); } catch (e) { __ds_ns.__errors.push({ path: "components/navigation/BottomNav.jsx", error: String((e && e.message) || e) }); }
