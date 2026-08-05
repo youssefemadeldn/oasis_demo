@@ -1,6 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
     <application
-        android:label="oasis_demo"
+        android:label="Oasis Demo"
         android:name="${applicationName}"
         android:icon="@mipmap/launcher_icon">
         <activity

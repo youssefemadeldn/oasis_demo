@@ -8,29 +8,15 @@ import '../../../../core/router/args/policy_detail_args.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_font_weight.dart';
 import '../../../../core/theme/app_text_styles.dart';
-import '../../../../core/widgets/ds_bottom_nav.dart';
 import '../../../../core/widgets/ds_card.dart';
 import '../../../../core/widgets/ds_tag.dart';
 import '../../../../core/widgets/ds_top_bar.dart';
 import '../../../../core/widgets/icons/ds_icons.dart';
 import 'policies_mock_data.dart';
 
-/// My Policies — routing target for [AppRoutes.policies].
+/// My Policies — routing target for the policies tab.
 class PoliciesScreen extends StatelessWidget {
   const PoliciesScreen({super.key});
-
-  void _onTabChanged(BuildContext context, DsBottomNavTab tab) {
-    switch (tab) {
-      case DsBottomNavTab.home:
-        context.goNamed(AppRoutes.home);
-      case DsBottomNavTab.policies:
-        return;
-      case DsBottomNavTab.claims:
-        context.goNamed(AppRoutes.claims);
-      case DsBottomNavTab.profile:
-        context.goNamed(AppRoutes.profile);
-    }
-  }
 
   Widget _typeIcon(PolicyType type) => switch (type) {
         PolicyType.motor => DsIcon.motor(),
@@ -115,10 +101,6 @@ class PoliciesScreen extends StatelessWidget {
             ),
           ],
         ),
-      ),
-      bottomNavigationBar: DsBottomNav(
-        active: DsBottomNavTab.policies,
-        onChanged: (tab) => _onTabChanged(context, tab),
       ),
     );
   }

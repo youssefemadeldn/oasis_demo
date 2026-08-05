@@ -9,7 +9,6 @@ import '../../../../core/router/args/claims_args.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_font_weight.dart';
 import '../../../../core/theme/app_text_styles.dart';
-import '../../../../core/widgets/ds_bottom_nav.dart';
 import '../../../../core/widgets/ds_button.dart';
 import '../../../../core/widgets/ds_card.dart';
 import '../../../../core/widgets/ds_status_badge.dart';
@@ -17,24 +16,11 @@ import '../../../../core/widgets/ds_toast.dart';
 import '../../../../core/widgets/ds_top_bar.dart';
 import 'claims_mock_data.dart';
 
-/// Claims list — routing target for [AppRoutes.claims].
+/// Claims list — routing target for the claims tab.
 class ClaimsScreen extends StatelessWidget {
   final ClaimsArgs args;
 
   const ClaimsScreen({super.key, this.args = const ClaimsArgs()});
-
-  void _onTabChanged(BuildContext context, DsBottomNavTab tab) {
-    switch (tab) {
-      case DsBottomNavTab.home:
-        context.goNamed(AppRoutes.home);
-      case DsBottomNavTab.policies:
-        context.goNamed(AppRoutes.policies);
-      case DsBottomNavTab.claims:
-        return;
-      case DsBottomNavTab.profile:
-        context.goNamed(AppRoutes.profile);
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -121,10 +107,6 @@ class ClaimsScreen extends StatelessWidget {
             ),
           ],
         ),
-      ),
-      bottomNavigationBar: DsBottomNav(
-        active: DsBottomNavTab.claims,
-        onChanged: (tab) => _onTabChanged(context, tab),
       ),
     );
   }

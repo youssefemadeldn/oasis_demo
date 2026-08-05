@@ -7,7 +7,6 @@ import '../../../../core/router/app_routes.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_font_weight.dart';
 import '../../../../core/theme/app_text_styles.dart';
-import '../../../../core/widgets/ds_bottom_nav.dart';
 import '../../../../core/widgets/ds_button.dart';
 import '../../../../core/widgets/ds_card.dart';
 import '../../../../core/widgets/ds_switch.dart';
@@ -29,19 +28,6 @@ class ProfileScreen extends StatefulWidget {
 
 class _ProfileScreenState extends State<ProfileScreen> {
   bool _notificationsOn = true;
-
-  void _onTabChanged(BuildContext context, DsBottomNavTab tab) {
-    switch (tab) {
-      case DsBottomNavTab.home:
-        context.goNamed(AppRoutes.home);
-      case DsBottomNavTab.policies:
-        context.goNamed(AppRoutes.policies);
-      case DsBottomNavTab.claims:
-        context.goNamed(AppRoutes.claims);
-      case DsBottomNavTab.profile:
-        return;
-    }
-  }
 
   void _toggleArabic(bool value) {
     context.setLocale(Locale(value ? 'ar' : 'en'));
@@ -185,10 +171,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ),
           ],
         ),
-      ),
-      bottomNavigationBar: DsBottomNav(
-        active: DsBottomNavTab.profile,
-        onChanged: (tab) => _onTabChanged(context, tab),
       ),
     );
   }

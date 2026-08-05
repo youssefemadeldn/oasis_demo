@@ -40,40 +40,59 @@ class DsBottomNav extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       top: false,
-      child: Container(
-        padding: EdgeInsetsDirectional.symmetric(horizontal: 8.w, vertical: 10.h),
-        decoration: BoxDecoration(
-          color: AppColors.surface,
-          border: Border(top: BorderSide(color: AppColors.divider)),
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: _kTabs.map((def) {
-            final isActive = def.tab == active;
-            final color =
-                isActive ? AppColors.primary : AppColors.textHint;
-            return InkWell(
-              onTap: () => onChanged(def.tab),
-              child: Padding(
-                padding: EdgeInsetsDirectional.symmetric(horizontal: 10.w, vertical: 2.h),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    def.icon(isActive),
-                    SizedBox(height: 3.h),
-                    Text(
-                      def.labelKey.tr(),
-                      style: AppTextStyles.labelSmall.copyWith(
-                        color: color,
-                        fontWeight:
-                            isActive ? AppFontWeight.semiBold : AppFontWeight.medium,
-                      ),
-                    ),
-                  ],
-                ),
+      minimum: EdgeInsets.only(bottom: 8.h),
+      child: Padding(
+        padding: EdgeInsetsDirectional.symmetric(horizontal: 16.w),
+        child: Container(
+          padding: EdgeInsetsDirectional.symmetric(horizontal: 8.w, vertical: 8.h),
+          decoration: BoxDecoration(
+            color: AppColors.surface,
+            borderRadius: BorderRadius.circular(28.r),
+            boxShadow: [
+              BoxShadow(
+                color: AppColors.textPrimary.withValues(alpha: 0.08),
+                blurRadius: 16.r,
+                offset: Offset(0, 4.h),
               ),
-            );
-          }).toList(),
+            ],
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: _kTabs.map((def) {
+              final isActive = def.tab == active;
+              final color =
+                  isActive ? AppColors.primary : AppColors.textHint;
+              return InkWell(
+                borderRadius: BorderRadius.circular(20.r),
+                onTap: () => onChanged(def.tab),
+                child: AnimatedContainer(
+                  duration: const Duration(milliseconds: 180),
+                  curve: Curves.easeOut,
+                  padding: EdgeInsetsDirectional.symmetric(horizontal: 10.w, vertical: 6.h),
+                  decoration: BoxDecoration(
+                    color: isActive ? AppColors.brandSoft : Colors.transparent,
+                    borderRadius: BorderRadius.circular(20.r),
+                  ),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      def.icon(isActive),
+                      SizedBox(height: 3.h),
+                      Text(
+                        def.labelKey.tr(),
+                        style: AppTextStyles.labelSmall.copyWith(
+                          color: color,
+                          fontWeight: isActive
+                              ? AppFontWeight.semiBold
+                              : AppFontWeight.medium,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              );
+            }).toList(),
+          ),
         ),
       ),
     );

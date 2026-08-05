@@ -18,6 +18,7 @@ import 'args/claim_detail_args.dart';
 import 'args/claims_args.dart';
 import 'args/policy_detail_args.dart';
 import 'args/submit_claim_args.dart';
+import 'main_shell_screen.dart';
 
 /// Builds the app's [GoRouter] instance.
 ///
@@ -49,19 +50,9 @@ class AppRouter {
           builder: (context, state) => const LoginScreen(),
         ),
         GoRoute(
-          path: '/home',
-          name: AppRoutes.home,
-          builder: (context, state) => const HomeScreen(),
-        ),
-        GoRoute(
           path: '/notifications',
           name: AppRoutes.notifications,
           builder: (context, state) => const NotificationsScreen(),
-        ),
-        GoRoute(
-          path: '/policies',
-          name: AppRoutes.policies,
-          builder: (context, state) => const PoliciesScreen(),
         ),
         GoRoute(
           path: '/policy-detail',
@@ -70,14 +61,6 @@ class AppRouter {
             final args = state.extra as PolicyDetailArgs?;
             if (args == null) return _unknown(state);
             return PolicyDetailScreen(args: args);
-          },
-        ),
-        GoRoute(
-          path: '/claims',
-          name: AppRoutes.claims,
-          builder: (context, state) {
-            final args = state.extra as ClaimsArgs? ?? const ClaimsArgs();
-            return ClaimsScreen(args: args);
           },
         ),
         GoRoute(
@@ -99,14 +82,55 @@ class AppRouter {
           },
         ),
         GoRoute(
-          path: '/profile',
-          name: AppRoutes.profile,
-          builder: (context, state) => const ProfileScreen(),
-        ),
-        GoRoute(
           path: '/support',
           name: AppRoutes.support,
           builder: (context, state) => const SupportScreen(),
+        ),
+        StatefulShellRoute.indexedStack(
+          builder: (context, state, navigationShell) =>
+              MainShellScreen(navigationShell: navigationShell),
+          branches: [
+            StatefulShellBranch(
+              routes: [
+                GoRoute(
+                  path: '/home',
+                  name: AppRoutes.home,
+                  builder: (context, state) => const HomeScreen(),
+                ),
+              ],
+            ),
+            StatefulShellBranch(
+              routes: [
+                GoRoute(
+                  path: '/policies',
+                  name: AppRoutes.policies,
+                  builder: (context, state) => const PoliciesScreen(),
+                ),
+              ],
+            ),
+            StatefulShellBranch(
+              routes: [
+                GoRoute(
+                  path: '/claims',
+                  name: AppRoutes.claims,
+                  builder: (context, state) {
+                    final args =
+                        state.extra as ClaimsArgs? ?? const ClaimsArgs();
+                    return ClaimsScreen(args: args);
+                  },
+                ),
+              ],
+            ),
+            StatefulShellBranch(
+              routes: [
+                GoRoute(
+                  path: '/profile',
+                  name: AppRoutes.profile,
+                  builder: (context, state) => const ProfileScreen(),
+                ),
+              ],
+            ),
+          ],
         ),
       ],
       errorBuilder: (context, state) => _unknown(state),
