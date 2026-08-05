@@ -94,9 +94,16 @@ class DsButton extends StatelessWidget {
           onTap: _disabled ? null : onPressed,
           borderRadius: BorderRadius.circular(10.r),
           child: Container(
+            // No `alignment` on the Container, and no `Center`/`Align`
+            // wrapper around `content` either — both default to expanding
+            // to fill all bounded space their parent offers (e.g. the full
+            // height Scaffold.bottomNavigationBar allows) rather than just
+            // centering the child in place. `content`'s Row already
+            // shrink-wraps (mainAxisSize.min) and centers its own children
+            // (mainAxisAlignment.center), so passing it straight through
+            // lets the Container shrink-wrap to it as expected.
             width: full ? double.infinity : null,
             padding: _padding,
-            alignment: Alignment.center,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10.r),
               border: _border,
