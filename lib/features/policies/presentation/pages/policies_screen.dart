@@ -41,74 +41,79 @@ class PoliciesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: DsTopBar(title: 'policies.title'.tr()),
       body: SafeArea(
-        top: false,
-        child: ListView.separated(
-          padding: EdgeInsets.all(16.r),
-          itemCount: kPolicies.length,
-          separatorBuilder: (_, _) => SizedBox(height: 12.h),
-          itemBuilder: (context, index) {
-            final policy = kPolicies[index];
-            return DsCard(
-              onTap: () => context.pushNamed(
-                AppRoutes.policyDetail,
-                extra: PolicyDetailArgs(policyId: policy.id),
-              ),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Container(
-                    width: 40.w,
-                    height: 40.w,
-                    alignment: Alignment.center,
-                    decoration: BoxDecoration(
-                      color: AppColors.brandSoft,
-                      borderRadius: BorderRadius.circular(10.r),
+        child: Column(
+          children: [
+            DsTopBar(title: 'policies.title'.tr()),
+            Expanded(
+              child: ListView.separated(
+                padding: EdgeInsets.all(16.r),
+                itemCount: kPolicies.length,
+                separatorBuilder: (_, _) => SizedBox(height: 12.h),
+                itemBuilder: (context, index) {
+                  final policy = kPolicies[index];
+                  return DsCard(
+                    onTap: () => context.pushNamed(
+                      AppRoutes.policyDetail,
+                      extra: PolicyDetailArgs(policyId: policy.id),
                     ),
-                    child: _typeIcon(policy.type),
-                  ),
-                  SizedBox(width: 12.w),
-                  Expanded(
-                    child: Column(
+                    child: Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
-                          policy.line,
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                          style: AppTextStyles.bodyMedium.copyWith(
-                            fontWeight: AppFontWeight.semiBold,
+                        Container(
+                          width: 40.w,
+                          height: 40.w,
+                          alignment: Alignment.center,
+                          decoration: BoxDecoration(
+                            color: AppColors.brandSoft,
+                            borderRadius: BorderRadius.circular(10.r),
                           ),
+                          child: _typeIcon(policy.type),
                         ),
-                        SizedBox(height: 2.h),
-                        Text(
-                          policy.id,
-                          style: AppTextStyles.bodySmall.copyWith(
-                            color: AppColors.textSecondary,
+                        SizedBox(width: 12.w),
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                policy.line,
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                                style: AppTextStyles.bodyMedium.copyWith(
+                                  fontWeight: AppFontWeight.semiBold,
+                                ),
+                              ),
+                              SizedBox(height: 2.h),
+                              Text(
+                                policy.id,
+                                style: AppTextStyles.bodySmall.copyWith(
+                                  color: AppColors.textSecondary,
+                                ),
+                              ),
+                              SizedBox(height: 8.h),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    'policies.expires'.tr(args: [policy.expiry]),
+                                    style: AppTextStyles.labelLarge,
+                                  ),
+                                  DsTag(
+                                    label: policy.tagKey.tr(),
+                                    tone: policy.tagTone,
+                                  ),
+                                ],
+                              ),
+                            ],
                           ),
-                        ),
-                        SizedBox(height: 8.h),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              'policies.expires'.tr(args: [policy.expiry]),
-                              style: AppTextStyles.labelLarge,
-                            ),
-                            DsTag(
-                              label: policy.tagKey.tr(),
-                              tone: policy.tagTone,
-                            ),
-                          ],
                         ),
                       ],
                     ),
-                  ),
-                ],
+                  );
+                },
               ),
-            );
-          },
+            ),
+          ],
         ),
       ),
       bottomNavigationBar: DsBottomNav(

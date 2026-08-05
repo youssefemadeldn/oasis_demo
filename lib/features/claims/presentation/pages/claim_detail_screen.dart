@@ -73,169 +73,174 @@ class ClaimDetailScreen extends StatelessWidget {
     final isInvoiced = claim.status == ClaimStatus.invoiced;
 
     return Scaffold(
-      appBar: DsTopBar(
-        title: 'claimDetail.title'.tr(),
-        onBack: () => context.pop(),
-      ),
       body: SafeArea(
-        top: false,
-        child: SingleChildScrollView(
-          padding: EdgeInsets.all(16.r),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              DsCard(
+        child: Column(
+          children: [
+            DsTopBar(
+              title: 'claimDetail.title'.tr(),
+              onBack: () => context.pop(),
+            ),
+            Expanded(
+              child: SingleChildScrollView(
+                padding: EdgeInsets.all(16.r),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Expanded(
-                          child: Text(
-                            claim.line,
-                            style: AppTextStyles.titleLarge.copyWith(
+                    DsCard(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Expanded(
+                                child: Text(
+                                  claim.line,
+                                  style: AppTextStyles.titleLarge.copyWith(
+                                    fontWeight: AppFontWeight.bold,
+                                  ),
+                                ),
+                              ),
+                              DsStatusBadge(status: claim.status),
+                            ],
+                          ),
+                          SizedBox(height: 4.h),
+                          Text(
+                            'claimDetail.claimAndPolicy'
+                                .tr(args: [claim.id, claim.policyId]),
+                            style: AppTextStyles.bodySmall.copyWith(
+                              color: AppColors.textSecondary,
+                            ),
+                          ),
+                          SizedBox(height: 8.h),
+                          Text(
+                            claim.amount,
+                            style: AppTextStyles.headlineSmall.copyWith(
+                              color: AppColors.primary,
                               fontWeight: AppFontWeight.bold,
                             ),
                           ),
-                        ),
-                        DsStatusBadge(status: claim.status),
-                      ],
-                    ),
-                    SizedBox(height: 4.h),
-                    Text(
-                      'claimDetail.claimAndPolicy'
-                          .tr(args: [claim.id, claim.policyId]),
-                      style: AppTextStyles.bodySmall.copyWith(
-                        color: AppColors.textSecondary,
+                        ],
                       ),
                     ),
-                    SizedBox(height: 8.h),
-                    Text(
-                      claim.amount,
-                      style: AppTextStyles.headlineSmall.copyWith(
-                        color: AppColors.primary,
-                        fontWeight: AppFontWeight.bold,
+                    SizedBox(height: 14.h),
+                    DsCard(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'claimDetail.progress'.tr(),
+                            style: AppTextStyles.bodySmall.copyWith(
+                              fontWeight: AppFontWeight.semiBold,
+                              color: AppColors.textSecondary,
+                            ),
+                          ),
+                          SizedBox(height: 12.h),
+                          ...timeline.map(
+                            (step) => Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Column(
+                                  children: [
+                                    Container(
+                                      width: 12.w,
+                                      height: 12.w,
+                                      decoration: BoxDecoration(
+                                        shape: BoxShape.circle,
+                                        color: !step.isDone
+                                            ? AppColors.divider
+                                            : (step.isLast && isRejected)
+                                                ? AppColors.statusRejectedFg
+                                                : AppColors.primary,
+                                      ),
+                                    ),
+                                    if (!step.isLast)
+                                      Container(
+                                        width: 2.w,
+                                        height: 26.h,
+                                        color: step.isDone
+                                            ? AppColors.primary
+                                            : AppColors.divider,
+                                      ),
+                                  ],
+                                ),
+                                SizedBox(width: 10.w),
+                                Padding(
+                                  padding: EdgeInsetsDirectional.only(bottom: 14.h),
+                                  child: Text(
+                                    step.labelKey.tr(),
+                                    style: AppTextStyles.bodySmall.copyWith(
+                                      color: step.isDone
+                                          ? AppColors.textPrimary
+                                          : AppColors.textHint,
+                                      fontWeight: step.isActive
+                                          ? AppFontWeight.bold
+                                          : AppFontWeight.regular,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
                       ),
                     ),
-                  ],
-                ),
-              ),
-              SizedBox(height: 14.h),
-              DsCard(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
+                    SizedBox(height: 14.h),
                     Text(
-                      'claimDetail.progress'.tr(),
+                      'claimDetail.documents'.tr(),
                       style: AppTextStyles.bodySmall.copyWith(
                         fontWeight: AppFontWeight.semiBold,
                         color: AppColors.textSecondary,
                       ),
                     ),
-                    SizedBox(height: 12.h),
-                    ...timeline.map(
-                      (step) => Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Column(
-                            children: [
-                              Container(
-                                width: 12.w,
-                                height: 12.w,
-                                decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  color: !step.isDone
-                                      ? AppColors.divider
-                                      : (step.isLast && isRejected)
-                                          ? AppColors.statusRejectedFg
-                                          : AppColors.primary,
+                    SizedBox(height: 10.h),
+                    Row(
+                      children: List.generate(2, (i) {
+                        return Padding(
+                          padding: EdgeInsetsDirectional.only(end: 10.w),
+                          child: Container(
+                            width: 76.w,
+                            height: 76.w,
+                            decoration: BoxDecoration(
+                              color: AppColors.background,
+                              border: Border.all(color: AppColors.divider),
+                              borderRadius: BorderRadius.circular(10.r),
+                            ),
+                            alignment: Alignment.center,
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                DsIcon.gallery(color: AppColors.textHint),
+                                SizedBox(height: 4.h),
+                                Text(
+                                  'IMG_204${i + 1}.jpg',
+                                  style: AppTextStyles.labelSmall,
                                 ),
-                              ),
-                              if (!step.isLast)
-                                Container(
-                                  width: 2.w,
-                                  height: 26.h,
-                                  color: step.isDone
-                                      ? AppColors.primary
-                                      : AppColors.divider,
-                                ),
-                            ],
-                          ),
-                          SizedBox(width: 10.w),
-                          Padding(
-                            padding: EdgeInsetsDirectional.only(bottom: 14.h),
-                            child: Text(
-                              step.labelKey.tr(),
-                              style: AppTextStyles.bodySmall.copyWith(
-                                color: step.isDone
-                                    ? AppColors.textPrimary
-                                    : AppColors.textHint,
-                                fontWeight: step.isActive
-                                    ? AppFontWeight.bold
-                                    : AppFontWeight.regular,
-                              ),
+                              ],
                             ),
                           ),
-                        ],
-                      ),
+                        );
+                      }),
                     ),
+                    if (isRejected) ...[
+                      SizedBox(height: 14.h),
+                      DsToast(
+                        tone: DsToastTone.error,
+                        message: 'claimDetail.rejectedToast'.tr(),
+                      ),
+                    ],
+                    if (isInvoiced) ...[
+                      SizedBox(height: 14.h),
+                      DsToast(
+                        tone: DsToastTone.success,
+                        message: 'claimDetail.invoicedToast'.tr(),
+                      ),
+                    ],
                   ],
                 ),
               ),
-              SizedBox(height: 14.h),
-              Text(
-                'claimDetail.documents'.tr(),
-                style: AppTextStyles.bodySmall.copyWith(
-                  fontWeight: AppFontWeight.semiBold,
-                  color: AppColors.textSecondary,
-                ),
-              ),
-              SizedBox(height: 10.h),
-              Row(
-                children: List.generate(2, (i) {
-                  return Padding(
-                    padding: EdgeInsetsDirectional.only(end: 10.w),
-                    child: Container(
-                      width: 76.w,
-                      height: 76.w,
-                      decoration: BoxDecoration(
-                        color: AppColors.background,
-                        border: Border.all(color: AppColors.divider),
-                        borderRadius: BorderRadius.circular(10.r),
-                      ),
-                      alignment: Alignment.center,
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          DsIcon.gallery(color: AppColors.textHint),
-                          SizedBox(height: 4.h),
-                          Text(
-                            'IMG_204${i + 1}.jpg',
-                            style: AppTextStyles.labelSmall,
-                          ),
-                        ],
-                      ),
-                    ),
-                  );
-                }),
-              ),
-              if (isRejected) ...[
-                SizedBox(height: 14.h),
-                DsToast(
-                  tone: DsToastTone.error,
-                  message: 'claimDetail.rejectedToast'.tr(),
-                ),
-              ],
-              if (isInvoiced) ...[
-                SizedBox(height: 14.h),
-                DsToast(
-                  tone: DsToastTone.success,
-                  message: 'claimDetail.invoicedToast'.tr(),
-                ),
-              ],
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

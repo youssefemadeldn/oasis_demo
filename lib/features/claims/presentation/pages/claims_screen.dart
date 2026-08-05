@@ -39,11 +39,10 @@ class ClaimsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: DsTopBar(title: 'claims.title'.tr()),
       body: SafeArea(
-        top: false,
         child: Column(
           children: [
+            DsTopBar(title: 'claims.title'.tr()),
             Padding(
               padding: EdgeInsetsDirectional.fromSTEB(16.w, 12.h, 16.w, 0),
               child: Align(

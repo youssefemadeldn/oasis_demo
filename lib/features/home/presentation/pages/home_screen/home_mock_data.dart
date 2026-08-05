@@ -42,5 +42,5 @@ const List<HomeRecentClaim> kHomeRecentClaims = [
 
 const int kHomeActivePoliciesCount = 3;
 const int kHomeOpenClaimsCount = 2;
-const String kHomePolicyholderName = 'Ahmed Al-Otaibi';
+const String kHomePolicyholderName = 'Omarn Ibrahim';
 const bool kHomeHasUnreadNotifications = true;

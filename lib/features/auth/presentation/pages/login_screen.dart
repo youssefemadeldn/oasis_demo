@@ -49,88 +49,100 @@ class _LoginScreenState extends State<LoginScreen> {
     return Scaffold(
       backgroundColor: AppColors.surfaceDark,
       body: SafeArea(
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              Padding(
-                padding: EdgeInsetsDirectional.symmetric(
-                  horizontal: 28.w,
-                  vertical: 40.h,
-                ),
-                child: Column(
-                  children: [
-                    Image.asset(AppConstants.kLogoFull, height: 40.h),
-                    SizedBox(height: 18.h),
-                    Text(
-                      'auth.login.tagline'.tr(),
-                      textAlign: TextAlign.center,
-                      style: AppTextStyles.bodySmall.copyWith(
-                        color: AppColors.textOnDarkMuted,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Container(
-                width: double.infinity,
-                padding: EdgeInsetsDirectional.fromSTEB(24.w, 28.h, 24.w, 32.h),
-                decoration: BoxDecoration(
-                  color: AppColors.surface,
-                  borderRadius: BorderRadius.vertical(
-                    top: Radius.circular(24.r),
-                  ),
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'auth.login.welcomeBack'.tr(),
-                      style: AppTextStyles.headlineSmall.copyWith(
-                        fontWeight: AppFontWeight.bold,
-                      ),
-                    ),
-                    SizedBox(height: 14.h),
-                    DsInput(
-                      label: 'auth.login.nationalIdLabel'.tr(),
-                      hint: 'auth.login.nationalIdHint'.tr(),
-                      controller: _nationalIdController,
-                      keyboardType: TextInputType.number,
-                    ),
-                    SizedBox(height: 14.h),
-                    DsInput(
-                      label: 'auth.login.passwordLabel'.tr(),
-                      hint: 'auth.login.passwordHint'.tr(),
-                      controller: _passwordController,
-                      obscureText: true,
-                    ),
-                    SizedBox(height: 8.h),
-                    Align(
-                      alignment: AlignmentDirectional.centerEnd,
-                      child: GestureDetector(
-                        onTap: _toggleForgotPassword,
-                        child: Text(
-                          'auth.login.forgotPassword'.tr(),
-                          style: AppTextStyles.labelLarge.copyWith(
-                            color: AppColors.primary,
+        child: LayoutBuilder(
+          builder: (context, constraints) {
+            return SingleChildScrollView(
+              child: ConstrainedBox(
+                constraints: BoxConstraints(minHeight: constraints.maxHeight),
+                child: IntrinsicHeight(
+                  child: Column(
+                    children: [
+                      Expanded(
+                        child: Padding(
+                          padding: EdgeInsetsDirectional.symmetric(
+                            horizontal: 28.w,
+                            vertical: 40.h,
+                          ),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Image.asset(AppConstants.kLogoFull, height: 40.h),
+                              SizedBox(height: 18.h),
+                              Text(
+                                'auth.login.tagline'.tr(),
+                                textAlign: TextAlign.center,
+                                style: AppTextStyles.bodySmall.copyWith(
+                                  color: AppColors.textOnDarkMuted,
+                                ),
+                              ),
+                            ],
                           ),
                         ),
                       ),
-                    ),
-                    if (_showForgotMessage) ...[
-                      SizedBox(height: 8.h),
-                      DsToast(message: 'auth.login.forgotPasswordSent'.tr()),
+                      Container(
+                        width: double.infinity,
+                        padding: EdgeInsetsDirectional.fromSTEB(24.w, 28.h, 24.w, 32.h),
+                        decoration: BoxDecoration(
+                          color: AppColors.surface,
+                          borderRadius: BorderRadius.vertical(
+                            top: Radius.circular(24.r),
+                          ),
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'auth.login.welcomeBack'.tr(),
+                              style: AppTextStyles.headlineSmall.copyWith(
+                                fontWeight: AppFontWeight.bold,
+                              ),
+                            ),
+                            SizedBox(height: 14.h),
+                            DsInput(
+                              label: 'auth.login.nationalIdLabel'.tr(),
+                              hint: 'auth.login.nationalIdHint'.tr(),
+                              controller: _nationalIdController,
+                              keyboardType: TextInputType.number,
+                            ),
+                            SizedBox(height: 14.h),
+                            DsInput(
+                              label: 'auth.login.passwordLabel'.tr(),
+                              hint: 'auth.login.passwordHint'.tr(),
+                              controller: _passwordController,
+                              obscureText: true,
+                            ),
+                            SizedBox(height: 8.h),
+                            Align(
+                              alignment: AlignmentDirectional.centerEnd,
+                              child: GestureDetector(
+                                onTap: _toggleForgotPassword,
+                                child: Text(
+                                  'auth.login.forgotPassword'.tr(),
+                                  style: AppTextStyles.labelLarge.copyWith(
+                                    color: AppColors.primary,
+                                  ),
+                                ),
+                              ),
+                            ),
+                            if (_showForgotMessage) ...[
+                              SizedBox(height: 8.h),
+                              DsToast(message: 'auth.login.forgotPasswordSent'.tr()),
+                            ],
+                            SizedBox(height: 14.h),
+                            DsButton(
+                              label: 'auth.login.loginButton'.tr(),
+                              full: true,
+                              onPressed: () => context.goNamed(AppRoutes.home),
+                            ),
+                          ],
+                        ),
+                      ),
                     ],
-                    SizedBox(height: 14.h),
-                    DsButton(
-                      label: 'auth.login.loginButton'.tr(),
-                      full: true,
-                      onPressed: () => context.goNamed(AppRoutes.home),
-                    ),
-                  ],
+                  ),
                 ),
               ),
-            ],
-          ),
+            );
+          },
         ),
       ),
     );

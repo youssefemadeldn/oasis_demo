@@ -7,7 +7,13 @@ import '../theme/app_text_styles.dart';
 
 /// Oasis Design System top bar. Built from
 /// `doc/design/Oasis Design System/components/navigation/TopBar.jsx`.
-class DsTopBar extends StatelessWidget implements PreferredSizeWidget {
+///
+/// Placed as the first child of the screen's `SafeArea`-wrapped body
+/// `Column` (never as `Scaffold.appBar`) — a plain `Container` used as
+/// `Scaffold.appBar` does not get Flutter's automatic status-bar/notch
+/// inset the way a real `AppBar` does, which previously left the title and
+/// back button crushed under the status bar on every screen using it.
+class DsTopBar extends StatelessWidget {
   final String title;
   final VoidCallback? onBack;
   final Widget? trailing;
@@ -15,12 +21,9 @@ class DsTopBar extends StatelessWidget implements PreferredSizeWidget {
   const DsTopBar({super.key, required this.title, this.onBack, this.trailing});
 
   @override
-  Size get preferredSize => Size.fromHeight(56.h);
-
-  @override
   Widget build(BuildContext context) {
     return Container(
-      height: preferredSize.height,
+      height: 56.h,
       padding: EdgeInsetsDirectional.symmetric(horizontal: 20.w),
       decoration: BoxDecoration(
         color: AppColors.surface,

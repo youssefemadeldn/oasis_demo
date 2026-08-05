@@ -71,60 +71,65 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: DsTopBar(
-        title: 'notifications.title'.tr(),
-        onBack: () => context.pop(),
-      ),
       body: SafeArea(
-        top: false,
-        child: ListView.separated(
-          padding: EdgeInsetsDirectional.symmetric(horizontal: 16.w, vertical: 8.h),
-          itemCount: _notifications.length,
-          separatorBuilder: (_, _) => Divider(color: AppColors.divider, height: 1),
-          itemBuilder: (context, index) {
-            final n = _notifications[index];
-            return InkWell(
-              onTap: () => _markRead(n),
-              child: Padding(
-                padding: EdgeInsetsDirectional.symmetric(vertical: 14.h, horizontal: 4.w),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    SizedBox(
-                      width: 16.w,
-                      child: n.unread
-                          ? Padding(
-                              padding: EdgeInsetsDirectional.only(top: 6.h),
-                              child: Container(
-                                width: 8.w,
-                                height: 8.w,
-                                decoration: BoxDecoration(
-                                  color: AppColors.primary,
-                                  shape: BoxShape.circle,
-                                ),
-                              ),
-                            )
-                          : null,
-                    ),
-                    SizedBox(width: 12.w),
-                    Expanded(
-                      child: Column(
+        child: Column(
+          children: [
+            DsTopBar(
+              title: 'notifications.title'.tr(),
+              onBack: () => context.pop(),
+            ),
+            Expanded(
+              child: ListView.separated(
+                padding: EdgeInsetsDirectional.symmetric(horizontal: 16.w, vertical: 8.h),
+                itemCount: _notifications.length,
+                separatorBuilder: (_, _) => Divider(color: AppColors.divider, height: 1),
+                itemBuilder: (context, index) {
+                  final n = _notifications[index];
+                  return InkWell(
+                    onTap: () => _markRead(n),
+                    child: Padding(
+                      padding: EdgeInsetsDirectional.symmetric(vertical: 14.h, horizontal: 4.w),
+                      child: Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(n.textKey.tr(), style: AppTextStyles.bodySmall),
-                          SizedBox(height: 4.h),
-                          Text(
-                            n.timeKey.tr(),
-                            style: AppTextStyles.labelSmall,
+                          SizedBox(
+                            width: 16.w,
+                            child: n.unread
+                                ? Padding(
+                                    padding: EdgeInsetsDirectional.only(top: 6.h),
+                                    child: Container(
+                                      width: 8.w,
+                                      height: 8.w,
+                                      decoration: BoxDecoration(
+                                        color: AppColors.primary,
+                                        shape: BoxShape.circle,
+                                      ),
+                                    ),
+                                  )
+                                : null,
+                          ),
+                          SizedBox(width: 12.w),
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(n.textKey.tr(), style: AppTextStyles.bodySmall),
+                                SizedBox(height: 4.h),
+                                Text(
+                                  n.timeKey.tr(),
+                                  style: AppTextStyles.labelSmall,
+                                ),
+                              ],
+                            ),
                           ),
                         ],
                       ),
                     ),
-                  ],
-                ),
+                  );
+                },
               ),
-            );
-          },
+            ),
+          ],
         ),
       ),
     );

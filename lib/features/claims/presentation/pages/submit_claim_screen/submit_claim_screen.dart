@@ -149,14 +149,13 @@ class _SubmitClaimScreenState extends State<SubmitClaimScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: DsTopBar(
-        title: 'submitClaim.title'.tr(),
-        onBack: _back,
-      ),
       body: SafeArea(
-        top: false,
         child: Column(
           children: [
+            DsTopBar(
+              title: 'submitClaim.title'.tr(),
+              onBack: _back,
+            ),
             SubmitClaimProgressSteps(currentStep: _step),
             Expanded(
               child: SingleChildScrollView(
