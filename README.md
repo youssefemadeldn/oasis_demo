@@ -8,6 +8,7 @@ A mobile app that lets an insurance policyholder manage their policies and claim
 
 ## Table of Contents
 
+- [Screens](#screens)
 - [Tech Stack](#tech-stack)
 - [Architecture Overview](#architecture-overview)
 - [Features](#features)
@@ -27,6 +28,71 @@ A mobile app that lets an insurance policyholder manage their policies and claim
 - [Contributing](#contributing)
 - [Known Limitations / TODO](#known-limitations--todo)
 - [License](#license)
+
+---
+
+## Screens
+
+Captured directly from the design source of truth — `doc/design/Oasis policyholder mobile app/Oasis Policyholder App.dc.html` — the same interactive prototype the UI-only build in `lib/features/` was implemented pixel-for-pixel against. Full-size images live in [`doc/design/screenshots/`](doc/design/screenshots/).
+
+<table>
+<tr>
+<td align="center" width="25%">
+<img src="doc/design/screenshots/01-splash.png" width="180" alt="Splash screen"><br>
+<sub><b>Splash</b></sub>
+</td>
+<td align="center" width="25%">
+<img src="doc/design/screenshots/02-onboarding.png" width="180" alt="Onboarding screen"><br>
+<sub><b>Onboarding</b></sub>
+</td>
+<td align="center" width="25%">
+<img src="doc/design/screenshots/03-login.png" width="180" alt="Login screen"><br>
+<sub><b>Login</b></sub>
+</td>
+<td align="center" width="25%">
+<img src="doc/design/screenshots/04-home.png" width="180" alt="Home dashboard"><br>
+<sub><b>Home</b></sub>
+</td>
+</tr>
+<tr>
+<td align="center" width="25%">
+<img src="doc/design/screenshots/05-notifications.png" width="180" alt="Notifications screen"><br>
+<sub><b>Notifications</b></sub>
+</td>
+<td align="center" width="25%">
+<img src="doc/design/screenshots/06-policies.png" width="180" alt="Policies list"><br>
+<sub><b>Policies</b></sub>
+</td>
+<td align="center" width="25%">
+<img src="doc/design/screenshots/07-policy-detail.png" width="180" alt="Policy detail screen"><br>
+<sub><b>Policy Detail</b></sub>
+</td>
+<td align="center" width="25%">
+<img src="doc/design/screenshots/08-submit-claim.png" width="180" alt="Submit claim wizard, step 1"><br>
+<sub><b>Submit Claim</b></sub>
+</td>
+</tr>
+<tr>
+<td align="center" width="25%">
+<img src="doc/design/screenshots/09-claims.png" width="180" alt="Claims list"><br>
+<sub><b>Claims</b></sub>
+</td>
+<td align="center" width="25%">
+<img src="doc/design/screenshots/10-claim-detail.png" width="180" alt="Claim detail with status timeline"><br>
+<sub><b>Claim Detail</b></sub>
+</td>
+<td align="center" width="25%">
+<img src="doc/design/screenshots/11-profile.png" width="180" alt="Profile / settings screen"><br>
+<sub><b>Profile</b></sub>
+</td>
+<td align="center" width="25%">
+<img src="doc/design/screenshots/12-support.png" width="180" alt="Support screen with broker contact and FAQ"><br>
+<sub><b>Support</b></sub>
+</td>
+</tr>
+</table>
+
+> These are the **design mock**, not live app screenshots — the actual Flutter build ([`lib/features/`](lib/features/)) reproduces this UI pixel-for-pixel per the build handoff notes (`doc/handoffs/002-policyholder-app-ui/`), but has not yet been screenshotted running on a simulator/device (see [Known Limitations / TODO](#known-limitations--todo)).
 
 ---
 
