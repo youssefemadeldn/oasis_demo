@@ -62,17 +62,17 @@ class DsBottomNav extends StatelessWidget {
               final isActive = def.tab == active;
               final color =
                   isActive ? AppColors.primary : AppColors.textHint;
-              return InkWell(
-                borderRadius: BorderRadius.circular(20.r),
+              return GestureDetector(
+                behavior: HitTestBehavior.opaque,
                 onTap: () => onChanged(def.tab),
-                child: AnimatedContainer(
-                  duration: const Duration(milliseconds: 180),
-                  curve: Curves.easeOut,
+                child: Container(
                   padding: EdgeInsetsDirectional.symmetric(horizontal: 10.w, vertical: 6.h),
-                  decoration: BoxDecoration(
-                    color: isActive ? AppColors.brandSoft : Colors.transparent,
-                    borderRadius: BorderRadius.circular(20.r),
-                  ),
+                  decoration: isActive
+                      ? BoxDecoration(
+                          color: AppColors.brandSoft,
+                          borderRadius: BorderRadius.circular(20.r),
+                        )
+                      : null,
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
